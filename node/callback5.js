@@ -1,10 +1,6 @@
 var async = require('async');
 var fs = require('fs');
 
-
-
-
-
 var filenames = [
   '1.txt',
   '2.txt',
@@ -24,13 +20,10 @@ function findFiles(dir, files, callback){
       callback(err);
       return;
     }
-    pfiles.forEach(function(b){
-      var z=async.filter(pfiles, function(e){
-        return(files.indexOf(b) != -1);
-      });
-     callback(z);
+    async.filter(pfiles, function(e){
+      return(files.indexOf(e) != -1);
     });
-
+  //  callback(pfiles); n
   });
 
 }

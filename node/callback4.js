@@ -3,30 +3,11 @@ var async = require('async');
 var fs = require('fs');
 var gm = require('gm');
 
-
-var url = 'https://raw.githubusercontent.com/voodootikigod/logo.js/master/js.png';
-var requestOptions = {
-  url: url,
-  encoding: null
-};
-
-
 function transform(filename, callback){
   gm(filename)
     .resize(240, 240)
-    .write(filename, function(err) {
-      if (err) {
-      callback(err);
-      console.log('no');
-        return;
-      }
-      console.log('yes');
-      callback(null,filename);
-  });
+    .write(filename, callback);
 }
-
-
-
 
 function resizeDir(dir, callback){
   fs.readdir(dir, function(err, files){
@@ -43,6 +24,7 @@ function resizeDir(dir, callback){
         return;
       }
     });
+    callback(null);
   });
 }
 
@@ -51,5 +33,5 @@ resizeDir('.',function(err, result){
     console.log(err);
     return;
   }
-  console.log(result);
+  console.log('complete');
 });

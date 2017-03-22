@@ -24,5 +24,5 @@ async.map(filenames, transform ,function(err, fileNames){
     console.log(err);
     return;
   }
-  console.log('Written');
+  console.log('Written ' + filenames);
 });
